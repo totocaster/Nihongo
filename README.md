@@ -10,10 +10,20 @@ Nihongo is API powered Japanese language morphological analysis Swift library fo
 
 Nihongo is powered by [Yahoo Japan's morphological analysis][yjma] API. Support of multiple—online and offline—service would be nice, but this is only option for now. 
 
-
 ---
 
-⚠️ **This is work in progress repo. I'll start accepting PRs as soon as I have this repo all tidy. By that time proper docs will be in place too.**
+⚠️ **This is work in progress repo. I'll start accepting PRs as soon as I have this repo all tidy. By that time proper docs will be in place too.** Here is how my todo list looks like now:
+
+- [x] Implement framework so its usable
+- [ ] Add error handling
+- [ ] Add tests and test cases
+- [ ] Consider adding sample iOS/iPhone app
+- [ ] Proper in-line documentation
+- [ ] Clear documentation in README (you are looking at it now)
+- [ ] Add Cococapods support
+- [ ] Add Carthage support
+- [ ] watchOS + tvOS support
+- [ ] macOS support (perhaps?)
 
 Thanks for checking-out Nihongo!
 
@@ -32,16 +42,34 @@ ma.analyze(sentence: sentence) {
     words in
     
     for token in words {
-        print("Word \(token.text) reads as \(token.reading) is \(token.class) and has base form of \(token.base)/")
+        print("Word \(token.text) reads as \(token.reading) is \(token.class) and has base form of \(token.base)")
     }
 }
 ```
 
-### `Word`
+Code above will yield following in console:
+
+```text
+Word 昼ごはん reads as ひるごはん is noun and has base form of 昼ごはん
+Word を reads as を is particle and has base form of を
+Word 食べ reads as たべ is verb and has base form of 食べる
+Word て reads as て is particle and has base form of て
+Word い reads as い is auxiliaryVerb and has base form of いる
+Word ます reads as ます is auxiliaryVerb and has base form of ます
+Word 。 reads as 。 is special and has base form of 。
+```
+
+
+### Extracted Token — `Word` 
 
 `Word` is inert/immutable struct that describes extracted token. 
 
-### `WordClass`
+* `text` — `String` that matches exact text from analyzed sentence.
+* `reading` — `String` in [hiragana][hrg] syllabary describing how to read `text`.
+* `class` — Internal `WordClass` enum describing what morphological part of sentance is the word.
+* `base` — `String` with base form of the word (e.g. unconjugated verb). Usefull of further dictionary look-ups.
+
+### Morphological Classes of Words — `WordClass`
 
 `WordClass` is lexical classification of `Word`. Supported classes are:
 
@@ -59,6 +87,5 @@ ma.analyze(sentence: sentence) {
 * `.suffix` — Suffix (接尾辞)
 * `.special` — Punctuation, brackets, symbols, etc.
 
-[WIP]
-
+[hrg]: https://en.wikipedia.org/wiki/Hiragana
 [yjma]: http://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html
