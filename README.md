@@ -1,6 +1,8 @@
 # Nihongo 🇯🇵
 
 ![Swift Version](https://img.shields.io/badge/swift-3.0-orange.svg?style=flat)
+[![Platform](https://img.shields.io/cocoapods/p/Typist.svg?style=flat)](http://cocoapods.org/pods/Typist)
+[![Twitter](https://img.shields.io/badge/twitter-@totocaster-blue.svg)](http://twitter.com/totocaster)
 
 Nihongo is API powered Japanese language morphological analysis Swift library for iOS. It helps you quickly tokenize Japanese sentences and understand its anatomy.
 
